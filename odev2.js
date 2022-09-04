@@ -236,7 +236,6 @@ Array.prototype.groupByCustom = function (sortFunc) {
       }
     }
     const obj = {};
-    console.log("fieldName", fieldName);
       this.forEach((item) => {
         if (obj[item[fieldName][0]]) {
           obj[item[fieldName][0]].push(item);
@@ -244,9 +243,9 @@ Array.prototype.groupByCustom = function (sortFunc) {
           obj[item[fieldName][0]] = [item];
         }
       });
-    console.log("obj", obj);
+    return obj;
   };
-  array.groupByCustom((item) => item.name[0]);
+  console.log(array.groupByCustom((item) => item.name[0]))
   array.groupByCustom(item=>item.gender);
 
 //örnek çıktı array.groupByCustom(item=>item.gender) için
