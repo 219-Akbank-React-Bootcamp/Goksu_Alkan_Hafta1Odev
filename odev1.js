@@ -11,16 +11,12 @@
 
 const array = ["Patika", "219", "Akbank", "React", "Bootcamp"]
 Array.prototype.includesCi = function (search) {
-    if (this.find((element) => element.toLowerCase() === search.toLowerCase())) {
-        return true;
-    }
-    else {
-        return false;
-    }
+    return this.some((element) => element.toLowerCase() === search.toLowerCase()) 
 };
-console.log(array.includesCi("patika") === true ? "Beklendiği gibi" : "Beklendiği gibi değil")
-console.log(array.includesCi("219") === false ? "Beklendiği gibi" : "Beklendiği gibi değil")
-console.log(array.includesCi("kırmızı") === false ? "Beklendiği gibi" : "Beklendiği gibi değil")
+
+console.log(array.includesCi("patika") ? "Beklendiği gibi" : "Beklendiği gibi değil")
+console.log(!array.includesCi("219")  ? "Beklendiği gibi" : "Beklendiği gibi değil")
+console.log(!array.includesCi("kırmızı") ? "Beklendiği gibi" : "Beklendiği gibi değil")
 
 // includes(), bir dizinin girdileri arasında belirli bir değer içerip içermediğini, dönen true veya false ile uygun şekilde belirler.
 // toLowerCase ile aranan ve bulunan elementleri küçük harflere çevirdik. (Case sensitivity) 

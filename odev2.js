@@ -1,17 +1,3 @@
-/**
- * groupByCustom diye bir metod yazılacak.
- * array prototipe eklenecek tüm arraylarde çalışsın diye.
- * parametre olarak bir fonksiyon alacak bu metod.
- * parametre olarak aldığı fonksiyonun parametre konteksinde array item olacak.
- * return ettiği değere göre gruplanacak
- * (örneğin :people.groupByCustom( (item)=>item.name[0] ) dediğimde name fieldinin baş harfine göre gruplama yapacak)
- * (örneğin :people.groupByCustom( (item)=>item.age ) dediğimde age fielde göre gruplama yapacak)
- * 
- */
-
-//İpucu 1: Array.prototype.groupByCustom =  dedikten sonra metodunuzu yazabilirsiniz
-
-//örnek array
 
 const array = [
     {
@@ -239,6 +225,29 @@ const array = [
         "gender": "m"
     },
 ]
+
+Array.prototype.groupByCustom = function (sortFunc) {
+    const letter = sortFunc(this[0]);
+    let fieldName;
+    for (const [key, value] of Object.entries(this[0])) {
+      if (value[0] === letter) {
+        fieldName = key;
+        break;
+      }
+    }
+    const obj = {};
+    console.log("fieldName", fieldName);
+      this.forEach((item) => {
+        if (obj[item[fieldName][0]]) {
+          obj[item[fieldName][0]].push(item);
+        } else {
+          obj[item[fieldName][0]] = [item];
+        }
+      });
+    console.log("obj", obj);
+  };
+  array.groupByCustom((item) => item.name[0]);
+  array.groupByCustom(item=>item.gender);
 
 //örnek çıktı array.groupByCustom(item=>item.gender) için
 /*

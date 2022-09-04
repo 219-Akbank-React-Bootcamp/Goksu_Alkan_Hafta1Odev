@@ -14,6 +14,14 @@ const input = {
         ["Hyacinth Vincent", "Duis Corporation", "iaculis.enim@magnaCrasconvallis.ca", "28/06/2022", "Eritrea", "Lyubertsy"],
         ["Brenden Martinez", "Volutpat Nunc Associates", "iaculis@estMauris.org", "24/03/2021", "British Indian Ocean Territory", "Colwood"]]
 }
+const output = input.data.map(array => {
+    const obj = {}
+    array.forEach((element, index) => {
+        obj[input.cols[index]] = element
+    })
+    return obj
+})
+console.log(output)
 
 const sampleoutput = [
     {
