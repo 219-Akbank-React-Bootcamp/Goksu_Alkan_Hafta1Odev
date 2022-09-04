@@ -226,27 +226,45 @@ const array = [
     },
 ]
 
-Array.prototype.groupByCustom = function (sortFunc) {
-    const letter = sortFunc(this[0]);
-    let fieldName;
-    for (const [key, value] of Object.entries(this[0])) {
-      if (value[0] === letter) {
-        fieldName = key;
-        break;
-      }
-    }
-    const obj = {};
-      this.forEach((item) => {
-        if (obj[item[fieldName][0]]) {
-          obj[item[fieldName][0]].push(item);
-        } else {
-          obj[item[fieldName][0]] = [item];
+Array.prototype.groupByCustom = function (groupBy) {
+    const groupValues = this.map(groupBy);
+    const Gender = this.reduce((total, user, index) => {
+        const key = groupValues[index];
+        total[key] = []
+        if (!total[key]) {
+            total[key] = [];
         }
-      });
-    return obj;
-  };
-  console.log(array.groupByCustom((item) => item.name[0]))
-  array.groupByCustom(item=>item.gender);
+        total[key].push(user);
+        return total
+    }, {});
+    console.log(Gender);
+};
+array.groupByCustom ((item) => item.name[0])
+array.groupByCustom (item => item.gender);
+
+
+// 2. Yöntem
+// Array.prototype.groupByCustom = function (sortFunc) {
+//     const letter = sortFunc(this[0]);
+//     let fieldName;
+//     for (const [key, value] of Object.entries(this[0])) {
+//       if (value[0] === letter) {
+//         fieldName = key;
+//         break;
+//       }
+//     }
+//     const obj = {};
+//       this.forEach((item) => {
+//         if (obj[item[fieldName][0]]) {
+//           obj[item[fieldName][0]].push(item);
+//         } else {
+//           obj[item[fieldName][0]] = [item];
+//         }
+//       });
+//     return obj;
+//   };
+//   console.log(array.groupByCustom((item) => item.name[0]))
+//   array.groupByCustom(item=>item.gender);
 
 //örnek çıktı array.groupByCustom(item=>item.gender) için
 /*
